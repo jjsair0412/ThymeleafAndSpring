@@ -60,6 +60,35 @@
 
         <hr class="my-4">
 
+        <hr class="my-4">
+        <!-- single checkbox -->
+        <div>판매 여부</div>
+        <div>
+            <div class="form-check">
+<!--                <input type="checkbox" id="open" name="open" class="form-check-input">-->
+                <input type="checkbox" id="open" th:field="*{open}" class="form-check-input">
+<!--                <input type="hidden" name="_open" value="on"/> &lt;!&ndash; 히든필드 추가 &ndash;&gt;-->
+                <label for="open" class="form-check-label">판매 오픈</label>
+            </div>
+        </div>
+
+        <!-- multi checkbox -->
+        <div>
+            <div>등록 지역</div>
+            <!--
+            타임리프는 루프로 체크박스를 만들어줄때 임의로 id값 뒤에 1,2,3,,,이렇게 넣어줘서 id값이 중복되지 않도록 해준다.
+            HTML의 id가 타임리프를 통해 동적으로 만들어지기 때문에 id를 임의로 지정하는것은힘들다
+            그래서 타임리프는 "${#ids.prev('regions')}"를 제공해서 동적으로 생성되는 id값을 사용할 수 있도록 한다.
+
+            얘도 똑같이 hidden필드를 만들어준다.
+            null로 오지는 않고, 빈배열이 오게 된다.
+             -->
+            <div th:each="region : ${regions}" class="form-check form-check-inline">
+                <input type="checkbox" th:field="*{regions}" th:value="${region.key}" class="form-check-input">
+                <label th:for="${#ids.prev('regions')}" th:text="${region.value}" class="form-check-label">서울</label>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col">
                 <button class="w-100 btn btn-primary btn-lg" type="submit">상품 등록</button>
