@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class DeliveryCode {
-    private String cod;
+    private String code;
     private String displayName;
 
 }
